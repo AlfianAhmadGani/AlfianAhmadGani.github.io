@@ -1,0 +1,20 @@
+{
+    "name": "App Grosir Sembako",
+    "short_name": "Gosir Sembako",
+    "description": "Membuat Aplikasi Kasir Sembako dengan javascript PWA ",
+    "icons": [{
+            "src": "assets/img/toko.png",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/img/toko.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#1F3641",
+    "background_color": "#ffffff",
+    "prefer_related_applications": false
+}

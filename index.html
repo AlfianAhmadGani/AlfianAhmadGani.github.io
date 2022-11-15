@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="assets/img/add-cart.png">
+  <link rel="icon" type="image/png" href="assets/img/toko.png">
+  <link rel="manifest" href="manifest.json">
+  <title>
+    Grosir Sembako
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+
+  <!-- Data Tables -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+
+  <style>
+
+    @media print {
+
+      #aksiId {
+        display: none !important;
+      }
+      #checkbox {
+      display: none !important;
+      }
+
+      #aksiConentId {
+        display: none !important;
+      }
+
+    }
+
+    .background {
+      background-color: #D6E4E5;
+      z-index: 10000000000000000000 !important;
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background" id="background">
+    <div class="wrap-in d-flex justify-content-center align-items-center" style="height: 100vh;">
+      <img width="100" src="assets/img/toko.png" class="d-block" alt="">
+      <h1 class="text-white" style="margin-left: 30px !important;">Grosir Sembako</h1>
+    </div>
+  </div>
+
+  <aside
+    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+    id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+        aria-hidden="true" id="iconSidenav"></i>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class=" w-auto " id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link " href="../pages/tables.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+           
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+  <main class="main-content position-relative border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+      data-scroll="false">
+      <div class="container py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+          </ol>
+          <h6 class="font-weight-bolder text-black mb-1">Dashboard</h6>
+          <h6 class="font-weight-bolder text-black mb-1">Alfian Ahmad Gani</h6>
+          <h6 class="font-weight-bolder text-black mb-1">A2.2000004</h6>
+          <h6 class="font-weight-bolder text-black mb-1">TI-C</h6>
+        </nav>
+
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="row mb-4">
+            <div class="col-md-2">
+              <select name="jenis_barang" id="jenis_barang" class="form-select">
+                <option value="Terigu">Terigu</option>
+                <option value="Gula">Gula</option>
+                <option value="Aci">Aci</option>
+                <option value="Minyak">Minyak</option>
+                <option value="Telur">Telur</option>
+              </select>
+              <input type="text" name="jumlah" placeholder="Masukan Jumlah" id="jumlah" class="form-control mt-1">
+            </div>
+            <div class="col-md-6">
+              <button type="button" onclick="addBarang()" class="btn btn-light btn-md"
+                style="width: 50px; height: 40px; padding: 0;">
+                <img src="assets/img/keranjang.png" width="20px" alt="">
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col text-end">
+        </div>
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <div class="row">
+                <div class="col-md-8">
+                  <h6>Data Barang</h6>
+                </div>
+              </div>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0" id="table">
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <p class="text-xs font-weight-bold mb-0">Total: <span id="total_bayar"></span></p>
+        </div>
+        <div class=" col-md-2">
+          
+          <button style="width: auto;" class="btn btn-primary text-xs font-weight-bold mb-0 mt-1 btn-sm"
+            onclick="printTable()">Print</button>
+        </div>
+      </div>
+      <footer class="footer pt-3  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                By
+                <a href="#" class="font-weight-bold" target="_blank">Alfian Ahmad Gani</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+
+
+  <!-- Data Table -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+  <script src="assets/js/printThis.js"></script>
+  <!-- <script>
+    $(document).ready(function () {
+      $('#table').dataTable();
+    });
+  </script> -->
+
+  <script>
+    function printTable() {
+      $('#table').printThis({
+        header: "<h3 class='mb-3'>Data Barang Toko Sembako</h3>",
+        // footer: $pembayaran,
+        importCSS: true,
+        importStyle: true,
+      });
+    }
+  </script>
+
+
+  <!--   Core JS Files   -->
+  <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/core/bootstrap.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <!-- <script src="https://example.com/fontawesome/v6.2.0/js/all.js" data-auto-a11y="true"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+  </script>
+  <!-- <script src="assets/js/jquery-3.3.1.slim.min.js"></script> -->
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/register.js"></script>
+  <script src="service-worker.js"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+
+  <script>
+    const myTimeout = setTimeout(backgroundChange, 800);
+
+    function backgroundChange(time) {
+      $("#background").animate({opacity: 0}, time);
+    }
+</script>
+</body>
+
+</html>
